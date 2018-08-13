@@ -1,0 +1,17 @@
+th {
+  background-color: #B784A7;
+  color: #ffffff;
+}
+
+a:link {
+  color: chocolate;
+}
+
+a:hover {
+  color:chartreuse;
+  cursor: help;
+}
+
+a:active {
+  color: crimson;
+}
