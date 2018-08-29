@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <title>Banner</title>
+        <script>
+            let imgArr = [],
+                idx = 0,
+                time;
+            
+            const cycle = () => {
+                document.getElementById('banner').src = imgArr[idx];
+                document.getElementById('slide').innerHTML = idx+1;
+                time = setTimeout(cycle, 3000);
+                idx++;
+                if(idx > 5) idx = 0;
+                return;
+            };
+
+            const start = () => {
+                imgArr = [];
+                imgArr.push('../img/graphql.png');
+                imgArr.push('../img/mongo.png');
+                imgArr.push('../img/node.png');
+                imgArr.push('../img/react.png');
+                imgArr.push('../img/redux.png');
+                imgArr.push('../img/vscode.png');
+
+                cycle();
+                return;
+            };
+
+            const stop = () => clearTimeout(time);
+
+            const step = (num) => {
+                stop();
+                idx += num;
+                if(idx < 0) idx = 5;
+                if(idx > 5) idx = 0;
+                document.getElementById('banner').src = imgArr[idx];
+                document.getElementById('slide').innerHTML = idx+1;
+                return;
+            }
+        </script>
+    </head>
+    <body onload="start()">
+        <div align="center">
+            <div>
+                <img id="banner" height="50%">
+                <p> Current Slide: <span id="slide"></span></p>
+            </div>
+            <br> <br>
+            <div>
+                <button onclick="cycle()">Resume Automatic</button>
+                <button onclick="stop()">Stop Automatic</button>
+            </div>
+            <br> <br>
+            <div>
+                <button onclick="step(1)">Next</button>
+                <button onclick="step(-1)">Previous</button>
+            </div>
+        </div>
+    </body>
+</html>
