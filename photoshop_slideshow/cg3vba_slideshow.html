@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <title>Banner</title>
+        <script>
+            let imgArr = [],
+                idx = 0,
+                time;
+            
+            const cycle = () => {
+                document.getElementById('banner').src = imgArr[idx][0];
+                document.getElementById('slide').innerHTML = imgArr[idx][1];
+                time = setTimeout(cycle, 3000);
+                idx++;
+                if(idx > 2) idx = 0;
+                return;
+            };
+
+            const start = () => {
+                imgArr = [];
+                imgArr.push(['../photoshop_assets/strawberry.png', "Strawberry Lips - The tutorial looked really cool"]);
+                imgArr.push(['../photoshop_assets/gucci.png', "Gucci Bloom - Always wanted to recreate this effect"]);
+                imgArr.push(['../photoshop_assets/cinemagraph.gif', "Beach Daze- Wasn't sure what type of video to use so I just followed the tutorial"]);
+                cycle();
+                return;
+            };
+
+            const stop = () => clearTimeout(time);
+
+            const step = (num) => {
+                stop();
+                idx += num;
+                if(idx < 0) idx = 2;
+                if(idx > 2) idx = 0;
+                document.getElementById('banner').src = imgArr[idx][0];
+                document.getElementById('slide').innerHTML = imgArr[idx][1];
+                return;
+            }
+        </script>
+    </head>
+    <body onload="start()">
+        <div align="center">
+            <div>
+                <img id="banner" height="50%">
+                <p> Current Slide: <span id="slide"></span></p>
+            </div>
+            <br> <br>
+            <div>
+                <button onclick="cycle()">Resume Automatic</button>
+                <button onclick="stop()">Stop Automatic</button>
+            </div>
+            <br> <br>
+            <div>
+                <button onclick="step(1)">Next</button>
+                <button onclick="step(-1)">Previous</button>
+            </div>
+        </div>
+    </body>
+</html>
